@@ -1,15 +1,33 @@
 package br.com.premier.gerenciadoreventos.iface;
 
-import br.com.premier.gerenciadoreventos.models.PeriodoDia;
+import br.com.premier.gerenciadoreventos.models.PeriodoTrilha;
 
+/**
+ * Interface da trilha de um evento
+ * 
+ * @author fhc
+ *
+ */
 public interface iTrilhaEvento {
 
-  iPeriodoEvento getInstance(PeriodoDia p);
+  /**
+   * Disponibiliza uma instância do perídio solicitado.
+   */
+  public iPeriodoEvento getInstance(PeriodoTrilha p);
 
-  void setPeriodo(PeriodoDia p, iPeriodoEvento periodo);
+  /**
+   * Define o período informado na trilha do evento.
+   */
+  public void setPeriodo(PeriodoTrilha p, iPeriodoEvento periodo);
 
-  iPeriodoEvento getPeriodo(PeriodoDia p);
+  /**
+   * Disponibiliza o período informado da trilha do evento.
+   */
+  public iPeriodoEvento getPeriodo(PeriodoTrilha p);
 
-  void mostrar();
+  /**
+   * Exibe todas as palestras da trilha
+   */
+  public void mostrar();
 
 }

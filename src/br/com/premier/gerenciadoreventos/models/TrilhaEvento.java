@@ -5,14 +5,20 @@ import java.util.Calendar;
 import br.com.premier.gerenciadoreventos.iface.iPeriodoEvento;
 import br.com.premier.gerenciadoreventos.iface.iTrilhaEvento;
 
+/**
+ * Classe que implementa uma trilha do evento a ser criado.
+ * 
+ * @author fhc
+ *
+ */
 public class TrilhaEvento implements iTrilhaEvento {
   private iPeriodoEvento manha = null;
   private iPeriodoEvento tarde = null;
-  private int tempoManha;
-  private Calendar horaIniManha;
-  private int tempoTardeMin;
-  private int tempoTardeMax;
-  private Calendar horaIniTarde;
+  private int tempoManha;         //tempo total disponibilizado para o período da manhã
+  private Calendar horaIniManha;  //horário de início do evento no perídio da manhã
+  private int tempoTardeMin;      //tempo mínimo total disponibilizado para o período da tarde
+  private int tempoTardeMax;      //tempo máximo total disponibilizado para o período da tarde
+  private Calendar horaIniTarde;  //horário de início do evento no perídio da tarde
 
   public TrilhaEvento(int tempoManha, Calendar horaIniManha, int tempoTardeMin, int tempoTardeMax, Calendar horaIniTarde) {
     this.tempoManha = tempoManha;
@@ -23,47 +29,52 @@ public class TrilhaEvento implements iTrilhaEvento {
   }
 
   @Override
-  public iPeriodoEvento getInstance(PeriodoDia p) {
+  public iPeriodoEvento getInstance(PeriodoTrilha p) {
     iPeriodoEvento result = null;
 
-    if (p == PeriodoDia.MANHA)
+    if (p == PeriodoTrilha.MANHA)
       result = new PeriodoEventoManha(tempoManha, horaIniManha);
     else
-      if (p == PeriodoDia.TARDE)
+      if (p == PeriodoTrilha.TARDE)
         result = new PeriodoEventoTarde(tempoTardeMin, tempoTardeMax, horaIniTarde);
 
     return result;
   }
 
   @Override
-  public void setPeriodo(PeriodoDia p, iPeriodoEvento periodo) {
+  public void setPeriodo(PeriodoTrilha p, iPeriodoEvento periodo) {
     if (periodo != null) {
-      if (p == PeriodoDia.MANHA)
+      if (p == PeriodoTrilha.MANHA)
         manha = periodo;
       else
-        if (p == PeriodoDia.TARDE)
+        if (p == PeriodoTrilha.TARDE)
           tarde = periodo;
 
+      //Caso o período seja atribuído, define todas as palestras contidas como alocadas, não permitindo que as mesmas sejam alocadas para outro período.
       periodo.alocarPalestras();
     }
   }
-
+  
   @Override
-  public iPeriodoEvento getPeriodo(PeriodoDia p) {
-    if (p == PeriodoDia.MANHA)
+  public iPeriodoEvento getPeriodo(PeriodoTrilha p) {
+    if (p == PeriodoTrilha.MANHA)
       return manha;
     else
-      if (p == PeriodoDia.TARDE)
+      if (p == PeriodoTrilha.TARDE)
         return tarde;
 
     return null;
   }
 
+  /**
+   * Exibe as palestras do período informado
+   * @param periodo
+   */
   private void mostrar(iPeriodoEvento periodo) {
     if (periodo != null)
       periodo.mostrar();
   }
-
+  
   @Override
   public void mostrar() {
     mostrar(manha);

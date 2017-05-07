@@ -1,5 +1,11 @@
 package br.com.premier.gerenciadoreventos.models;
 
+/**
+ * Conterá as informações de uma palestra do evento.
+ * 
+ * @author fhc
+ *
+ */
 public class Palestra implements Comparable<Palestra> {
 
   private String titulo;

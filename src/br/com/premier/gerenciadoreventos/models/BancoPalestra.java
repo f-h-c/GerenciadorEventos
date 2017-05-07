@@ -11,6 +11,12 @@ import br.com.premier.gerenciadoreventos.converters.PalestraConverter;
 import br.com.premier.gerenciadoreventos.exceptions.ConvertionException;
 import br.com.premier.gerenciadoreventos.iface.iBancoPalestra;
 
+/**
+ * Armazena as palestras que comporão o evento a partir do arquivo texto informado.
+ * 
+ * @author fhc
+ *
+ */
 public class BancoPalestra implements iBancoPalestra {
   private List<Palestra> banco = new ArrayList<Palestra>();
 
@@ -25,6 +31,10 @@ public class BancoPalestra implements iBancoPalestra {
       System.out.println(p);
   }
 
+  /**
+   * Ordena de forma decrescente a partir do tempo de duração, as palestras contidas no banco.
+   * 
+   */
   private void ordenaBanco() {
     Collections.sort(banco);
   }
@@ -40,6 +50,7 @@ public class BancoPalestra implements iBancoPalestra {
       while (linha != null) {
         if (linha != null && linha.trim().length() > 0)
           try {
+            //Converte a linha lida do arquivo em um objeto da classe Palestra e o adiciona ao banco
             addPalestra(PalestraConverter.convert(linha));
           }
           catch (ConvertionException e) {
@@ -91,20 +102,5 @@ public class BancoPalestra implements iBancoPalestra {
   @Override
   public Palestra getPalestra(int posicao) {
     return banco.get(posicao);
-  }
-
-  public static void main(String[] args) {
-
-    /*
-     * Talk t = new Talk("Palestra 1", 20); bank.addTalk(t);
-     * 
-     * t = new Talk("Palestra 2", 40); bank.addTalk(t);
-     * 
-     * t = new Talk("Palestra 3", 30); bank.addTalk(t);
-     * 
-     * t = new Talk("Palestra 4", 10); bank.addTalk(t);
-     */
-
-    // bank.show();
   }
 }

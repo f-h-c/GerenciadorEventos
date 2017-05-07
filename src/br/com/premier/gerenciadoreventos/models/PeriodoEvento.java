@@ -9,6 +9,12 @@ import java.util.List;
 import br.com.premier.gerenciadoreventos.iface.iPeriodoEvento;
 import br.com.premier.gerenciadoreventos.infra.PropertiesConsumer;
 
+/**
+ * Classe abstrata do período de uma trilha de um evento.
+ * 
+ * @author fhc
+ *
+ */
 public abstract class PeriodoEvento implements iPeriodoEvento {
 
   private int tempoMaximo;
@@ -24,6 +30,7 @@ public abstract class PeriodoEvento implements iPeriodoEvento {
     this.horaIni = horaIni;
     
     try {
+      //busca no arquivo de propriedades o formato que será exibido o horário da palestra
       formatoHora = PropertiesConsumer.getInstance("./properties/parametros.properties").getProp("formato.hora", formatoHora);
     }
     catch (IOException e) {
@@ -33,6 +40,11 @@ public abstract class PeriodoEvento implements iPeriodoEvento {
     dataFormatada = new SimpleDateFormat(formatoHora);
   }
   
+  /**
+   * Informa o texto do acontecimento final do período da trilha de um evento.
+   * 
+   * @return
+   */
   protected abstract String getEventoFimPeriodo();
 
   @Override
@@ -73,7 +85,8 @@ public abstract class PeriodoEvento implements iPeriodoEvento {
 
     return result;
   }
-
+  
+  @Override
   public boolean parcialmenteOk(int tempo) {
     return tempo + getTempoTotal() <= tempoMaximo;
   }
