@@ -123,13 +123,4 @@ public class Evento implements iEvento {
     }
   }
 
-  public static void main(String[] args) {
-    iEvento e = new Evento("/input.txt");
-
-    if (e.montaEvento())
-      e.mostrar();
-    else
-      System.out.println("Não foi possível alocar todas as palestras da forma pré-estabelecida.");
-  }
-
 }
