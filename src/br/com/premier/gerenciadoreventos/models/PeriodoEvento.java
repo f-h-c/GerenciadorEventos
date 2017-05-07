@@ -7,7 +7,7 @@ import java.util.Calendar;
 import java.util.List;
 
 import br.com.premier.gerenciadoreventos.iface.iPeriodoEvento;
-import br.com.premier.gerenciadoreventos.infra.PropertiesConsumer;
+import br.com.premier.gerenciadoreventos.infra.PropertiesHelper;
 
 /**
  * Classe abstrata do período de uma trilha de um evento.
@@ -31,7 +31,7 @@ public abstract class PeriodoEvento implements iPeriodoEvento {
     
     try {
       //busca no arquivo de propriedades o formato que será exibido o horário da palestra
-      formatoHora = PropertiesConsumer.getInstance("./properties/parametros.properties").getProp("formato.hora", formatoHora);
+      formatoHora = PropertiesHelper.getInstance("./properties/parametros.properties").getProp("formato.hora", formatoHora);
     }
     catch (IOException e) {
       e.printStackTrace();

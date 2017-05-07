@@ -3,7 +3,7 @@ package br.com.premier.gerenciadoreventos.converters;
 import java.io.IOException;
 
 import br.com.premier.gerenciadoreventos.exceptions.ConvertionException;
-import br.com.premier.gerenciadoreventos.infra.PropertiesConsumer;
+import br.com.premier.gerenciadoreventos.infra.PropertiesHelper;
 import br.com.premier.gerenciadoreventos.models.Palestra;
 
 /**
@@ -30,7 +30,7 @@ public class PalestraConverter {
     String min = "min";
 
     try {
-      PropertiesConsumer prop = PropertiesConsumer.getInstance("./properties/parametros.properties");
+      PropertiesHelper prop = PropertiesHelper.getInstance("./properties/parametros.properties");
       //busca no properties a String que representará palestras lightning
       lightning = prop.getProp("lightning.valorStr", lightning);
       //busca no properties a String que indicará a unidade de minutos nas informações das palestras contidas no arquivo texto passado

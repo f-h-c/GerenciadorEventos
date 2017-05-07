@@ -10,7 +10,7 @@ import br.com.premier.gerenciadoreventos.iface.iBancoPalestra;
 import br.com.premier.gerenciadoreventos.iface.iEvento;
 import br.com.premier.gerenciadoreventos.iface.iPeriodoEvento;
 import br.com.premier.gerenciadoreventos.iface.iTrilhaEvento;
-import br.com.premier.gerenciadoreventos.infra.PropertiesConsumer;
+import br.com.premier.gerenciadoreventos.infra.PropertiesHelper;
 
 /** 
  * Administradora do evento a ser criado a partir do arquivo de palestras informado.
@@ -33,7 +33,7 @@ public class Evento implements iEvento {
 
   private void carregaPropriedades() {
     try {
-      PropertiesConsumer prop = PropertiesConsumer.getInstance("./properties/parametros.properties");
+      PropertiesHelper prop = PropertiesHelper.getInstance("./properties/parametros.properties");
       horasManha = Integer.parseInt(prop.getProp("qtde.horas.Manha", Integer.toString(horasManha)));
       horasTardeMin = Integer.parseInt(prop.getProp("qtde.horas.Tarde.Min", Integer.toString(horasTardeMin)));
       horasTardeMax = Integer.parseInt(prop.getProp("qtde.horas.Tarde.Max", Integer.toString(horasTardeMax)));
